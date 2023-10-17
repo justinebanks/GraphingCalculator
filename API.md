@@ -114,7 +114,7 @@ var angle2 = acutes[1]
 angle1.is_congruent_to(angle2) # true (because vertical angles are congruent)
 ```
 
-The structure of the `Dictionary` returns is as follows:
+The structure of the `Dictionary` returned is as follows:
 ```gdscript
 {
     "acute": [Angle1, Angle2]
@@ -124,7 +124,7 @@ The structure of the `Dictionary` returns is as follows:
 }
 ```
 
-The acute key holds the pair of acute angles and the obtuse key holds the pair of obtuse angles. The intersection is the intersection of the 2 lines given.
+The "acute" key holds the pair of acute vertical angles and the "obtuse" key holds the pair of obtuse vertical angles. The intersection is the intersection of the 2 lines given.
 
 The "raw" key just returns an array of the 4 angles created by the intersection of the 2 lines. The first and second values are congruent and so are the third and fourth.
 
@@ -137,43 +137,36 @@ verts["raw"][2].is_congruent_to(verts["raw"][3]) # true
 ```
 
 ## Segment
+Many properties and methods of Segments and Rays are shared with Lines
 
-**Properties**
-`pointA: Point`
-`pointB: Point`
-`slope: float`
-`seg_width: float`
-`seg_color: Color`
-`obj_name: String`
+`Segment` objects have all the methods of the `Line` object except `coords_at_x()`, `slope_intercept_form()`, and `get_vertical_angles()`
 
-**Methods**
-`_init(a: Point, b: Point, color = Color.RED)`
-`to_line(is_visible: bool = false, color = Color.BLUE) -> Line`
-`contains(point: Point) -> bool`
-`get_length() -> float`
-`is_congruent_to(seg: Segment) -> bool`
-`get_midpoint(point_name: String, color = Color.RED) -> Point`
-`intersects_line(point_name: String, line: Line, color = Color.RED) -> Point`
-`intersects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`
-`intersects_ray(point_name: String, ray: Ray, color = Color.RED) -> Point`
-`bisects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`
-`is_same_as(obj) -> bool`
-`is_parallel_to(obj) -> bool`
-`is_perpendicular_to(obj) -> bool`
-`is_transversal_of(obj1, obj2) -> bool`
+A few methods that the `Segment` object has, but not the `Line` are `get_length()`, `get_midpoint()`, `is_congruent_to()`, and `to_line()`
+
+Properties that it doesn't have are the `y-intercept` and it has `seg_width` and `seg_color` rather than `line_width` and `line_color`
+
+
+|Methods|Description|
+|------|------------|
+|`to_line(is_visible: bool = false, color = Color.BLUE) -> Line`|Returns the Line corresponding to the segment (Useful for accessing functionality only available to lines)|
+|`get_length() -> float`|Returns the length of the segment|
+|`is_congruent_to(seg: Segment) -> bool`|Returns true if the segment is congruent to the given segment|
+|`get_midpoint(point_name: String, color = Color.RED) -> Point`|Returns the `Point` that is the midpoint of the segment|
 
 ## Ray
+Also shares most of the properties and methods of the `Line` object except for `coords_at_x()`, `slope_intercept_form()`, and `get_vertical_angles()`, and `y_intercept`
 
-**Properties**
-`pointA: Point`
-`pointB: Point`
-`slope: float`
-`ray_width: float`
-`ray_color: Color`
-`obj_name: String`
+Similarly to the `Segment` the property names for width and color are related to the class name: `ray_width` and `ray_color`
 
-**Enumerations**
-```
+New functions introduced that are different from the `Line` class are as follows:
+
+|Methods|Description|
+|-------|-----------|
+|`to_line(visible: bool = false, color = Color.BLUE) -> Line`|Returns the `Line` corresponding to the `Ray`|
+|`is_opposite_of(ray: Ray) -> bool`|Returns true if the given `Ray` is an 'opposite ray' of `self`|
+|`direction() -> Vector2`|Returns one of the 4 directions of mentioned in the following enumeration|
+
+```gdscript
 enum {
 	DIRECTION_FORWARD = 1,
 	DIRECTION_BACKWARD = -1,
@@ -182,44 +175,32 @@ enum {
 }
 ```
 
-**Methods**
-`_init(a: Point, b: Point, color = Color.RED)`
-`to_line(visible: bool = false, color = Color.BLUE) -> Line`
-`contains(point: Point) -> bool`
-`direction() -> Vector2`
-`intersects_line(point_name: String, line: Line, color = Color.RED) -> Point`
-`intersects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`
-`intersects_ray(point_name: String, ray: Ray, color = Color.RED) -> Point`
-`bisects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`
-`is_opposite_of(ray: Ray) -> bool`
-`is_same_as(obj) -> bool`
-`is_parallel_to(obj) -> bool`
-`is_perpendicular_to(obj) -> bool`
-`is_transversal_of(obj1, obj2) -> bool`
 
 ## Angle
+Contructor: `_init(a: Point, vert: Point, b: Point)`
 
-**Properties**
-`vertex: Point`
-`pointA: Point`
-`pointB: Point`
-`side1: Ray`
-`side2: Ray`
-`obj_name: String`
+|Properties|Description|
+|----------|-----------|
+|`vertex: Point`|Vertex of the angle|
+|`pointA: Point`|One point of the angle|
+|`pointB: Point`|Another point of the angle|
+|`side1: Ray`|The side of the angle containing `pointA` and the `vertex`|
+|`side2: Ray`|The side of the angle containing `pointB` and the `vertex`|
+|`obj_name: String`|The name of the angle based on the `obj_name` property of the 3 points given in the constructor|
 
-**Methods**
-`_init(a: Point, vert: Point, b: Point)`
-`measure() -> float`
-`is_congruent_to(angle: Angle) -> bool`
-`is_same_as(angle: Angle) -> bool`
-`is_adjacent_to(angle: Angle) -> bool`
-`is_complement_of(angle: Angle) -> bool`
-`is_supplement_of(angle: Angle) -> bool`
-`is_linear_pair(angle: Angle) -> bool`
-`is_obtuse() -> bool`
-`is_acute() -> bool`
-`is_right() -> bool`
-`get_vertical_angle() -> bool`
+|Methods|Description|
+|-------|-----------|
+|`measure() -> float`|Returns the measure of the angle|
+|`is_congruent_to(angle: Angle) -> bool`|Returns true if the angle is congruent to the given angle|
+|`is_same_as(angle: Angle) -> bool`|Returns true if the angle is the same as the given angle|
+|`is_adjacent_to(angle: Angle) -> bool`|Returns true if the angle is adjacent to the given angle|
+|`is_complement_of(angle: Angle) -> bool`|Returns true if the angle is complementary to the given angle|
+|`is_supplement_of(angle: Angle) -> bool`|Returns true if the angle is supplementary to the given angle|
+|`is_linear_pair(angle: Angle) -> bool`|Returns true if the angle and the given angle are a linear pair (adjacent and supplementary)|
+|`is_obtuse() -> bool`|Returns true if the angle is obtuse|
+|`is_acute() -> bool`|Returns true if the angle is acute|
+|`is_right() -> bool`|Returns true if the angle is right|
+|`get_vertical_angle() -> bool`|Returns the angle that is vertical to `self` |
 
 ## Statement
 
