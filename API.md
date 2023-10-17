@@ -1,27 +1,60 @@
-## Expression (In Progress)
+# API Documentation
 
-**Properties**
-`expression: String`
-`obj_name: String`
+This document is a work in progress
+
+Currently In Progress:
+- Expression
+- Point
+- Line
+- Segment
+- Ray
+- Angle
+- Statement
+- Transversal
+
+### Expression (In Progress)
+
+|**Properties**|
+|---|
+|`expression: String`
+|`obj_name: String`
 
 |**Methods**|
-`_init(expression: String)`
-`simplify() -> Expression`
+|---|
+|`_init(expression: String)`
+|`simplify() -> Expression`
 
-## Point 
+### Point 
+The constructor for the `Point` object is as follows:
+`_init(point_name: String, x: float, y: float, color=Color.RED)`
 
-**Properties**
-`x: float`
-`y: float`
-`point_color: Color`
-`obj_name: String`
+The `point_name` is the name that the program will use to recognize the point
+and name lines, segments, rays, and angles made using that point accordingly.
+The other parameters are fairly straightforward.
 
-**Methods**
-`_init(name: String, pointX: float, pointY: float, color = Color.RED)`
-`is_collinear_to(a: Point, b: Point) -> bool`
-`distance_to(point: Point) -> float`
-`get_coordinates() -> Vector2`
-`is_same_as(point: Point) -> bool`
+```gdscript
+var pointA = Point.new("A", 0, 0)
+var pointB = Point.new("B", 10, 10)
+var pointC = Point.new("C", 20, 20)
+
+# Retuns whether points A, B, and C are collinear
+pointA.is_collinear_to(pointB, pointC)
+```
+
+|Properties|Description|
+|----------|-----------|
+|`x: float`|X-value of the `Point`|
+|`y: float`|Y value of the `Point`|
+|`point_color: Color`|Color of the point (using Godot's builtin `Color`)|
+|`obj_name: String`|The `point_name` used in the constructor. Once again, this is the name that the program will use to recognize the point and name lines, segments, rays, and angles made using that point accordingly|
+
+
+|Methods|Description|
+|-------|-----------|
+|`is_collinear_to(a: Point, b: Point) -> bool`|Returns true if points a, b, & c are collinear|
+|`distance_to(point: Point) -> float`|Returns the distance between two `Point` objects|
+|`get_coordinates() -> Vector2`|Returns the coordinates of the `Point` in Godot's builtin `Vector2` type|
+|`is_same_as(point: Point) -> bool`|Returns true if the 2 points are the same point|
 
 ## Line
 

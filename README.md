@@ -3,14 +3,14 @@
 A graphing calculator created using the Godot 4 game engine
 
 **Class API References**
-- [Expression (In Progress)](https://github.com/justinebanks/GraphingCalculator/API.md)
-- [Point](https://github.com/justinebanks/GraphingCalculator/API.md)
-- [Line](https://github.com/justinebanks/GraphingCalculator/API.md)
-- [Segment](https://github.com/justinebanks/GraphingCalculator/API.md)
-- [Ray](https://github.com/justinebanks/GraphingCalculator/API.md)
-- [Angle](https://github.com/justinebanks/GraphingCalculator/API.md)
-- [Statement](https://github.com/justinebanks/GraphingCalculator/API.md)
-- [Transversal](https://github.com/justinebanks/GraphingCalculator/API.md)
+- [Expression (In Progress)](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Point](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Line](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Segment](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Ray](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Angle](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Statement](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Transversal](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
 
 ## Quick Start
 The main endpoint of the program is [graph.gd](https://github.com/justinebanks/GraphingCalculator/Scripts/graph.gd)
@@ -42,7 +42,7 @@ func new_example():
 In the function for your new example, you can create points, lines, and other common
 geometric objects as variables and perform operations on them
 
-```
+```gdscript
 func new_example():
     var pointA = Point.new("A", 20, 20, Color.ORANGE)
     var pointB = Point.new("B", 25, 25, Color.ORANGE)
