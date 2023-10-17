@@ -43,18 +43,18 @@ pointA.is_collinear_to(pointB, pointC)
 
 |Properties|Description|
 |----------|-----------|
-|`x: float`|X-value of the `Point`|
-|`y: float`|Y value of the `Point`|
-|`point_color: Color`|Color of the point (using Godot's builtin `Color`)|
-|`obj_name: String`|The `point_name` used in the constructor. Once again, this is the name that the program will use to recognize the point and name lines, segments, rays, and angles made using that point accordingly|
+|x: float|X-value of the `Point`|
+|y: float|Y value of the `Point`|
+|point_color: Color|Color of the point (using Godot's builtin `Color`)|
+|obj_name: String|The `point_name` used in the constructor. Once again, this is the name that the program will use to recognize the point and name lines, segments, rays, and angles made using that point accordingly|
 
 
 |Methods|Description|
 |-------|-----------|
-|`is_collinear_to(a: Point, b: Point) -> bool`|Returns true if points a, b, & c are collinear|
-|`distance_to(point: Point) -> float`|Returns the distance between two `Point` objects|
-|`get_coordinates() -> Vector2`|Returns the coordinates of the `Point` in Godot's builtin `Vector2` type|
-|`is_same_as(point: Point) -> bool`|Returns true if the 2 points are the same point|
+|is_collinear_to(a: Point, b: Point) -> bool|Returns true if points a, b, & c are collinear|
+|distance_to(point: Point) -> float|Returns the distance between two `Point` objects|
+|get_coordinates() -> Vector2|Returns the coordinates of the `Point` in Godot's builtin `Vector2` type|
+|is_same_as(point: Point) -> bool|Returns true if the 2 points are the same point|
 
 ## Line
 

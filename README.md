@@ -3,14 +3,14 @@
 A graphing calculator created using the Godot 4 game engine
 
 **Class API References**
-- [Expression (In Progress)](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
-- [Point](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
-- [Line](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
-- [Segment](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
-- [Ray](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
-- [Angle](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
-- [Statement](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
-- [Transversal](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md)
+- [Expression (In Progress)](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#expression)
+- [Point](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#point)
+- [Line](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#line)
+- [Segment](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#segment)
+- [Ray](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#ray)
+- [Angle](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#angle)
+- [Statement](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#statement)
+- [Transversal](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#transversal)
 
 ## Quick Start
 The main endpoint of the program is [graph.gd](https://github.com/justinebanks/GraphingCalculator/Scripts/graph.gd)
