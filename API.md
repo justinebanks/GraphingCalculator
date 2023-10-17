@@ -11,7 +11,7 @@ Currently In Progress:
 - Statement
 - Transversal
 
-### Expression (In Progress)
+## Expression (In Progress)
 
 |**Properties**|
 |---|
@@ -23,7 +23,7 @@ Currently In Progress:
 |`_init(expression: String)`
 |`simplify() -> Expression`
 
-### Point 
+## Point 
 The constructor for the `Point` object is as follows:
 `_init(point_name: String, x: float, y: float, color=Color.RED)`
 
@@ -55,7 +55,7 @@ pointA.is_collinear_to(pointB, pointC)
 |`get_coordinates() -> Vector2`|Returns the coordinates of the `Point` in Godot's builtin `Vector2` type|
 |`is_same_as(point: Point) -> bool`|Returns true if the 2 points are the same point|
 
-### Line
+## Line
 
 Constructor: `_init(a: Point, b: Point, color = Color.RED)`.
 `a` and `b` are the 2 points required to create the line and `color` is the color that is given to the line that is automatically drawn between these 2 points
@@ -84,21 +84,57 @@ lineAB.contains(pointC) # true
 **Static Methods**
 `static get_line_with_slope(point: Point, slope: float, color: Color = Color.RED) -> Line`
 
-**Methods**
-`_init(a: Point, b: Point, color = Color.RED)`
-`slope_intercept_form() -> String`
-`coords_at_x(point_name: String, x_coord: float, color = Color.RED) -> Point`
-`contains(point: Point) -> bool`
-`intersects_line(point_name: String, line: Line, color = Color.RED) -> Point`
-`intersects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`
-`intersects_ray(point_name: String, ray: Ray, color = Color.RED) -> Point`
-`bisects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`
-`is_same_as(obj) -> bool`
-`is_parallel_to(obj) -> bool`
-`is_perpendicular_to(obj) -> bool`
-`bisects_angle(angle: Angle) (In Progress)`
-`get_vertical_angles(other_line: Line, intersection_name: String = "I")`
-`is_transversal_of(obj1, obj2) -> bool`
+|Methods|Description|
+|-------|-----------|
+|`slope_intercept_form() -> String`|Returns the slope-intercept form of the line|
+|`coords_at_x(point_name: String, x_coord: float, color = Color.RED) -> Point`|Returns the `Point` corresponding to the given X-Value|
+|`contains(point: Point) -> bool`|Returns true if the line contains the given point|
+|`intersects_line(point_name: String, line: Line, color = Color.RED) -> Point`|Returns the point of intersection with the given line (null if they don't intersect)|
+|`intersects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`|Returns the point of intersection with the given segment (null if they don't intersect)|
+|`intersects_ray(point_name: String, ray: Ray, color = Color.RED) -> Point`|Returns the point of intersection with the given ray (null if they don't intersect)|
+|`bisects_segment(point_name: String, seg: Segment, color = Color.RED) -> Point`|Returns the point of bisection with the given segment (null if they it doesn't bisect it)|
+|`is_same_as(obj) -> bool`|Returns true if the 2 objects are the same|
+|`is_parallel_to(obj) -> bool`|Returns true if the 2 objects are parallel to each other|
+|`is_perpendicular_to(obj) -> bool`|Returns true if the 2 objects are perpendicular to each other|
+|`bisects_angle(angle: Angle) (In Progress)`|Returns true if the the line bisects the given angle|
+|`get_vertical_angles(other_line: Line, intersection_name: String = "I")`||
+|`is_transversal_of(obj1, obj2) -> bool`|Returns true if the line intersects the 2 given objects at different points|
+
+### Vertical Angles
+
+```gdscript
+var verts = lineAB.get_vertical_angles(lineCD)
+
+# Returns array for the pair of acute vertical angles formed from the intersection
+var acutes = verts["acute"]
+
+var angle1 = acutes[0]
+var angle2 = acutes[1]
+
+angle1.is_congruent_to(angle2) # true (because vertical angles are congruent)
+```
+
+The structure of the `Dictionary` returns is as follows:
+```gdscript
+{
+    "acute": [Angle1, Angle2]
+    "obtuse": [Angle3, Angle4]
+    "intersection": Point,
+    "raw": [Angle1, Angle2, Angle3, Angle4]
+}
+```
+
+The acute key holds the pair of acute angles and the obtuse key holds the pair of obtuse angles. The intersection is the intersection of the 2 lines given.
+
+The "raw" key just returns an array of the 4 angles created by the intersection of the 2 lines. The first and second values are congruent and so are the third and fourth.
+
+```gdscript
+var verts = lineAB.get_vertical_angles(lineCD)
+
+verts["raw"][0].is_congruent_to(verts["raw"][1]) # true
+verts["raw"][2].is_congruent_to(verts["raw"][3]) # true
+
+```
 
 ## Segment
 
