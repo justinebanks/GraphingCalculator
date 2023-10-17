@@ -4,10 +4,6 @@ This document is a work in progress
 
 Currently In Progress:
 - Expression
-- Line
-- Segment
-- Ray
-- Angle
 - Statement
 - Transversal
 
@@ -81,9 +77,6 @@ lineAB.contains(pointC) # true
 |`line_color: Color`|The color of the line automatically drawn between the 2 given points|
 |`obj_name: String`|The name that the program uses to recognize this line (Based on the `obj_name` properties of the 2 `Point` objects passed to the constructor)|
 
-**Static Methods**
-`static get_line_with_slope(point: Point, slope: float, color: Color = Color.RED) -> Line`
-
 |Methods|Description|
 |-------|-----------|
 |`slope_intercept_form() -> String`|Returns the slope-intercept form of the line|
@@ -99,6 +92,8 @@ lineAB.contains(pointC) # true
 |`bisects_angle(angle: Angle) (In Progress)`|Returns true if the the line bisects the given angle|
 |`get_vertical_angles(other_line: Line, intersection_name: String = "I")`||
 |`is_transversal_of(obj1, obj2) -> bool`|Returns true if the line intersects the 2 given objects at different points|
+
+One additional method is the static function `get_line_width_slope()`. It's static and is used to initialize are `Line` with a single `Point` and a slope. The structure are as follows: `get_line_with_slope(point: Point, slope: float, color: Color = Color.RED) -> Line`
 
 ### Vertical Angles
 
@@ -164,7 +159,7 @@ New functions introduced that are different from the `Line` class are as follows
 |-------|-----------|
 |`to_line(visible: bool = false, color = Color.BLUE) -> Line`|Returns the `Line` corresponding to the `Ray`|
 |`is_opposite_of(ray: Ray) -> bool`|Returns true if the given `Ray` is an 'opposite ray' of `self`|
-|`direction() -> Vector2`|Returns one of the 4 directions of mentioned in the following enumeration|
+|`direction() -> Vector2`|Returns one of the 4 directions of mentioned in the following enumeration relating to the direction the ray goes|
 
 ```gdscript
 enum {
@@ -174,7 +169,6 @@ enum {
 	DIRECTION_DOWN = -1
 }
 ```
-
 
 ## Angle
 Contructor: `_init(a: Point, vert: Point, b: Point)`
@@ -204,13 +198,27 @@ Contructor: `_init(a: Point, vert: Point, b: Point)`
 
 ## Statement
 
-**Properties**
-`object1`
-`relationship: int`
-`object2`
-`object3`
+The `Statement` object is used express the relationship between 2 objects in the program for example, saying that 2 angles are congruent or that a line contains a point
 
-**Enumerations**
+```gdscript
+var pointA = Point.new("A", 20, 20, Color.ORANGE)
+var pointB = Point.new("B", 25, 25, Color.ORANGE)
+var segAB = Segment.new(pointA, pointB, Color.ORANGE)
+
+var pointC = Point.new("A", 28, 28, Color.GREEN)
+var pointD = Point.new("B",33, 33, Color.GREEN)
+var segCD = Segment.new(pointC, pointD, Color.GREEN)
+
+var s1 = Statement.new(segAB, Statement.INTERSECTS, segCD)
+
+print(s1.as_string())
+print(s1.evaluate())
+```
+
+This example above creates 2 segments that obviously don't intersect. After intializing the `Statement`, the string representation of the statement is printed to console and then the boolean evaluation of the `Statement`.
+
+The possible relationships between 2 objects are listed in the following enumeration:
+
 ```
 enum {
 	SAME_AS,
@@ -236,6 +244,13 @@ enum {
 	SAMESIDE_INTERIOR_TO,
 }
 ```
+
+**Properties**
+`object1`
+`relationship: int`
+`object2`
+`object3`
+
 **Static Methods**
 `possible_operations1(object) -> Array`
 `possible_operations2(object) -> Array`
