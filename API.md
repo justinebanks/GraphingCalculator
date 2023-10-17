@@ -4,7 +4,6 @@ This document is a work in progress
 
 Currently In Progress:
 - Expression
-- Point
 - Line
 - Segment
 - Ray
@@ -43,29 +42,44 @@ pointA.is_collinear_to(pointB, pointC)
 
 |Properties|Description|
 |----------|-----------|
-|x: float|X-value of the `Point`|
-|y: float|Y value of the `Point`|
-|point_color: Color|Color of the point (using Godot's builtin `Color`)|
-|obj_name: String|The `point_name` used in the constructor. Once again, this is the name that the program will use to recognize the point and name lines, segments, rays, and angles made using that point accordingly|
+|`x: float`|X-value of the `Point`|
+|`y: float`|Y value of the `Point`|
+|`point_color: Color`|Color of the point (using Godot's builtin `Color`)|
+|`obj_name: String`|The `point_name` used in the constructor. Once again, this is the name that the program will use to recognize the point and name lines, segments, rays, and angles made using that point accordingly|
 
 
 |Methods|Description|
 |-------|-----------|
-|is_collinear_to(a: Point, b: Point) -> bool|Returns true if points a, b, & c are collinear|
-|distance_to(point: Point) -> float|Returns the distance between two `Point` objects|
-|get_coordinates() -> Vector2|Returns the coordinates of the `Point` in Godot's builtin `Vector2` type|
-|is_same_as(point: Point) -> bool|Returns true if the 2 points are the same point|
+|`is_collinear_to(a: Point, b: Point) -> bool`|Returns true if points a, b, & c are collinear|
+|`distance_to(point: Point) -> float`|Returns the distance between two `Point` objects|
+|`get_coordinates() -> Vector2`|Returns the coordinates of the `Point` in Godot's builtin `Vector2` type|
+|`is_same_as(point: Point) -> bool`|Returns true if the 2 points are the same point|
 
-## Line
+### Line
 
-**Properties**
-`pointA: Point`
-`pointB: Point`
-`y_intercept: float`
-`slope: float`
-`line_width: float`
-`line_color: Color`
-`obj_name: String`
+Constructor: `_init(a: Point, b: Point, color = Color.RED)`.
+`a` and `b` are the 2 points required to create the line and `color` is the color that is given to the line that is automatically drawn between these 2 points
+
+```gdscript
+var pointA = Point.new("A", 0, 0)
+var pointB = Point.new("B", 10, 10)
+var pointC = Point.new("C", 20, 20)
+
+var lineAB = Line.new(pointA, pointB)
+
+# Returns whether line AB contains pointC
+lineAB.contains(pointC) # true
+```
+
+|Properties|Description|
+|----------|-----------|
+|`pointA: Point`|The first point given to create the `Line`|
+|`pointB: Point`|The second point given to create the `Line`|
+|`y_intercept: float`|The Y-Intercept of the line|
+|`slope: float`|The slope of the line|
+|`line_width: float`|The width the line is drawn with. Wasn't meant to be changed. DON'T CHANGE|
+|`line_color: Color`|The color of the line automatically drawn between the 2 given points|
+|`obj_name: String`|The name that the program uses to recognize this line (Based on the `obj_name` properties of the 2 `Point` objects passed to the constructor)|
 
 **Static Methods**
 `static get_line_with_slope(point: Point, slope: float, color: Color = Color.RED) -> Line`
