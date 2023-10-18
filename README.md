@@ -13,7 +13,7 @@ A graphing calculator created using the Godot 4 game engine
 - [Transversal](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#transversal)
 
 ## Quick Start
-The main endpoint of the program is [graph.gd](https://github.com/justinebanks/GraphingCalculator/Scripts/graph.gd)
+The main endpoint of the program is [graph.gd](https://github.com/justinebanks/GraphingCalculator/blob/master/Scripts/graph.gd)
 In the `_ready()` function, simply write a function for where your executed code will go
 
 ```gdscript

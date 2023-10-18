@@ -198,7 +198,7 @@ Contructor: `_init(a: Point, vert: Point, b: Point)`
 
 ## Statement
 
-The `Statement` object is used express the relationship between 2 objects in the program for example, saying that 2 angles are congruent or that a line contains a point
+The `Statement` object is used express the relationship between 2 objects in the program for example, saying that 2 angles are congruent or that a line contains a point. Here's its constructor: `_init(object1, relationship: int, object2, object3 = null)`
 
 ```gdscript
 var pointA = Point.new("A", 20, 20, Color.ORANGE)
@@ -245,22 +245,58 @@ enum {
 }
 ```
 
-**Properties**
-`object1`
-`relationship: int`
-`object2`
-`object3`
+|Properties|Description|
+|----------|-----------|
+|`object1`|First object being compared|
+|`relationship: int`|Relationship between the 2 objects|
+|`object2`|Object being compared to `object1`|
+|`object3`|Possible other object being compared to `object1` or A context required for the relationship between `object1` and `object2` to work|
 
 **Static Methods**
 `possible_operations1(object) -> Array`
 `possible_operations2(object) -> Array`
 
-**Methods**
-`_init(object1, relationship: int, object2, object3 = null)`
-`get_flipped_statement() -> Statement`
-`evaluate() -> bool`
-`as_string() -> String`
-`is_valid_statement() -> bool`
+|Methods|Description|
+|-------|-----------|
+|`get_flipped_statement() -> Statement`|Flips the logic of the statement (Ex. From AB ≅ CD To CD ≅ AB) and only works if `object3` is `null`|
+|`evaluate() -> bool`|Returns whether the statement is true of false|
+|`as_string() -> String`|Returns the String representation of the statement|
+|`is_valid_statement() -> bool`|Checks if a statement is valid (Doesn't Work In All Cases)|
+
+### Statement(...).object3
+The `object3` property has a few different uses. 
+
+Firstly, it can be used to compare `object1` to 2 other objects (`object2` and `object3`). This only works if the `relationship` is either `Statement.COLLINEAR_TO` (Because 2 points are always collinear but not 3) and `Statement.TRANSVERSAL_OF` (because a transversal must intersect at least 2 lines)
+
+```gdscript
+var pointA = Point.new("A", 0, 0)
+var pointB = Point.new("B", 10, 10)
+var pointC = Point.new("C", 20, 20)
+
+var s1 = Statement.new(pointA, Statement.COLLINEAR_TO, pointB, pointC)
+print(s1.evaluate())
+
+```
+
+The second way to use the `object3` property is as a variable that holds prerequisite information that is required for the statement to make sense.
+The only case where this is used is when comparing 2 angles created from a transversal using the "4 Special Pairs". This means that this only works if the relationship is `Statement.CORRESPONDS_TO`, `Statement.ALTERNATE_INTERIOR_TO`, `Statement.ALTERNATE_EXTERIOR_TO`, and `Statement.SAMESIDE_INTERIOR_TO`.
+
+In this case, we the `Transversal` object as the `object3` parameter.
+
+```gdscript
+# Initializes the structure where line AB is a transversal of line CD & EF
+var trans = Transversal.new(lineAB, lineCD, lineEF)
+
+# Returns the first recognized pair of corresponding angles in the
+var cores = trans.get_corresponding_angles()[0]
+
+
+var s1 = Statement.new(cores[0], Statement.CORRESPONDS_TO, cores[1], trans)
+
+```
+
+The `Transversal` like the context that is required for the statement to make sense. Also, note that `lineAB`, `lineCD`, and `lineEF` aren't defined in this example.
+
 
 ## Transversal
 
