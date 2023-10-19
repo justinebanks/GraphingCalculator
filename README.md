@@ -3,7 +3,6 @@
 A graphing calculator created using the Godot 4 game engine
 
 **Class API References**
-- [Expression (In Progress)](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#expression)
 - [Point](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#point)
 - [Line](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#line)
 - [Segment](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#segment)
@@ -11,9 +10,10 @@ A graphing calculator created using the Godot 4 game engine
 - [Angle](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#angle)
 - [Statement](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#statement)
 - [Transversal](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#transversal)
+- [Expression (In Progress)](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#expression)
 
 ## Quick Start
-The main endpoint of the program is [graph.gd](https://github.com/justinebanks/GraphingCalculator/blob/master/Scripts/graph.gd)
+The main endpoint of the program is [graph.gd](https://github.com/justinebanks/GraphingCalculator/blob/master/Scripts/graph.gd). 
 In the `_ready()` function, simply write a function for where your executed code will go
 
 ```gdscript

@@ -25,8 +25,13 @@ func _init(transversal, of1, of2):
 	self.transversee1 = of1
 	self.transversee2 = of2
 	
-	self.vertical1 = transversal.get_vertical_angles(of1)
-	self.vertical2 = transversal.get_vertical_angles(of2)
+	
+	if transversal is Line:
+		self.vertical1 = transversal.get_vertical_angles(of1)
+		self.vertical2 = transversal.get_vertical_angles(of2)
+	else:
+		self.vertical1 = transversal.to_line().get_vertical_angles(of1)
+		self.vertical2 = transversal.to_line().get_vertical_angles(of2)
 	
 	if !transversal.is_transversal_of(of1, of2):
 		print("Error: Invalid Transversal Instance")

@@ -4,20 +4,7 @@ This document is a work in progress
 
 Currently In Progress:
 - Expression
-- Statement
-- Transversal
 
-## Expression (In Progress)
-
-|**Properties**|
-|---|
-|`expression: String`
-|`obj_name: String`
-
-|**Methods**|
-|---|
-|`_init(expression: String)`
-|`simplify() -> Expression`
 
 ## Point 
 The constructor for the `Point` object is as follows:
@@ -219,7 +206,7 @@ This example above creates 2 segments that obviously don't intersect. After inti
 
 The possible relationships between 2 objects are listed in the following enumeration:
 
-```
+```gdscript
 enum {
 	SAME_AS,
 	CONGRUENT_TO,
@@ -300,17 +287,50 @@ The `Transversal` like the context that is required for the statement to make se
 
 ## Transversal
 
-**Properties**
-`transversal`
-`transversee1`
-`transversee2`
-`vertical1: Dictionary`
-`vertical2: Dictionary`
+A transversal in geometry is a line, segment, or ray that intersects 2 or more other lines, segments, rays all at different points. The transversal is considered a transversal of the 2 objects it intersects
 
-**Methods**
-`_init(transversal, of1, of2)`
-`get_corresponding_angles()`
-`get_alternate_exterior_angles()`
-`get_alternate_interior_angles()`
-`get_sameside_interior_angles()`
+In a transversal structure, the "4 Special Pairs" are used to express the relationship between the angles created by the intersections. (corresponding angles, alternate interior angles, alternate exterior angles, and same-side interior angles)
+
+The constructor takes in the transversal as the first parameters and then the second and third are the 2 objects intersected by the transversal. The methods of the `Transversal` object all return 2-dimensional arrays: An array of pairs of angles.
+
+```gdscript
+var trans = Transversal.new(lineAB, lineCD, lineEF)
+
+# Gets the second pair of alternate exterior angles
+var alt_ext = trans.get_alternate_exterior_angle()[1]
+
+# This will return true if lineCD is parallel to lineEF
+alt_ext[0].is_congruent_to(alt_ext[1])
+
+```
+
+
+|Properties|Description|
+|----------|-----------|
+|`transversal`|The transversal
+|`transversee1`|One of the objects being intersected by the transversal
+|`transversee2`|Another one of the objects being intersected by the transversal
+|`vertical1: Dictionary`|The return value of either `transversal.get_vertical_angles(transversee1)` or `transversal.to_line().get_vertical_angles(transversee1)`
+|`vertical2: Dictionary`|The return value of either `transversal.get_vertical_angles(transversee2)` or `transversal.to_line().get_vertical_angles(transversee2)`
+
+
+|Methods|Description|
+|-------|-----------|
+|`get_corresponding_angles()`|Returns the 4 pairs of corresponding angles|
+|`get_alternate_exterior_angles()`|Returns the 2 pairs of alternate exterior angles|
+|`get_alternate_interior_angles()`|Returns the 2 pairs of alternate interior angles|
+|`get_sameside_interior_angles()`|Returns the 2 pairs of same-side interior angles|
+
+
+## Expression (In Progress)
+
+|Properties|
+|---|
+|`expression: String`
+|`obj_name: String`
+
+|Methods|
+|---|
+|`_init(expression: String)`
+|`simplify() -> Expression`
 
