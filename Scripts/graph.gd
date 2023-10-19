@@ -50,7 +50,8 @@ func _ready():
 	#same_angle_example()
 	#intersection_example()
 	#vertical_angle_example()
-	transversal_example()
+	#transversal_example()
+	angle_bisector_example()
 
 
 func show_graph_bounds():
@@ -200,7 +201,6 @@ func transversal_example():
 		if s.evaluate() == true:
 			print(s.as_string())
 	
-	
 	var trans = Transversal.new(lineAB, lineCD, lineEF)
 	var pair = trans.get_alternate_interior_angles()[1]
 	
@@ -215,7 +215,17 @@ func transversal_example():
 	print("")
 	print(pair[0].measure())
 	print(pair[1].measure())
+
+
+func angle_bisector_example():
+	var pointA = Point.new("A", 20, 20)
+	var pointB = Point.new("B", 25, 20)
+	var pointC = Point.new("C", 20.0001, 25)
+	var angleBAC = Angle.new(pointB, pointA, pointC)
 	
+	var pointD = Point.new("D", 10, 10)
+	var lineDA = Line.new(pointD, pointA)
 	
-	
+	print(lineDA.bisects_angle(angleBAC))
+
 

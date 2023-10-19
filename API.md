@@ -76,8 +76,8 @@ lineAB.contains(pointC) # true
 |`is_same_as(obj) -> bool`|Returns true if the 2 objects are the same|
 |`is_parallel_to(obj) -> bool`|Returns true if the 2 objects are parallel to each other|
 |`is_perpendicular_to(obj) -> bool`|Returns true if the 2 objects are perpendicular to each other|
-|`bisects_angle(angle: Angle) (In Progress)`|Returns true if the the line bisects the given angle|
-|`get_vertical_angles(other_line: Line, intersection_name: String = "I")`||
+|`bisects_angle(angle: Angle) -> bool`|Returns true if the the line bisects the given angle|
+|`get_vertical_angles(other_line: Line, intersection_name: String = "I")`|Explained in [Vertical Angle Documentation](https://github.com/justinebanks/GraphingCalculator/blob/master/API.md#vertical-angles)|
 |`is_transversal_of(obj1, obj2) -> bool`|Returns true if the line intersects the 2 given objects at different points|
 
 One additional method is the static function `get_line_width_slope()`. It's static and is used to initialize are `Line` with a single `Point` and a slope. The structure are as follows: `get_line_with_slope(point: Point, slope: float, color: Color = Color.RED) -> Line`

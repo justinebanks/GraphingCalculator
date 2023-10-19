@@ -148,6 +148,21 @@ func bisects_segment(point_name: String, seg: Segment, color = Color.RED) -> Poi
 	return null
 
 
+func bisects_angle(angle: Angle) -> bool:
+	var contains_vertex = self.contains(angle.vertex)
+	
+	var angle1 = Angle.new(self.pointA, angle.vertex, angle.pointA)
+	var angle2 = Angle.new(self.pointA, angle.vertex, angle.pointB)
+	
+	var angle3 = Angle.new(self.pointB, angle.vertex, angle.pointA)
+	var angle4 = Angle.new(self.pointB, angle.vertex, angle.pointB)
+	
+	if contains_vertex and (angle1.is_congruent_to(angle2) or angle3.is_congruent_to(angle4)):
+		return true
+	else:
+		return false
+
+
 func is_opposite_of(ray: Ray) -> bool:
 	var same_endpoint = ray.pointA.is_same_as(self.pointA)
 	var opposite_direction = self.pointA.is_collinear_to(self.pointB, ray.pointB)
