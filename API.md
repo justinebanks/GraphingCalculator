@@ -261,7 +261,7 @@ var pointB = Point.new("B", 10, 10)
 var pointC = Point.new("C", 20, 20)
 
 var s1 = Statement.new(pointA, Statement.COLLINEAR_TO, pointB, pointC)
-print(s1.evaluate())
+print(s1.evaluate()) # essentially runs 'pointA.is_collinear_to(pointB, pointC)'
 
 ```
 
